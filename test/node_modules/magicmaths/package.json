@@ -1,0 +1,11 @@
+{
+  "name": "magicmaths",
+  "version": "1.0.0",
+  "description": "The best ever calculator developed during the course of nodejs",
+  "main": "Index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kiran",
+  "license": "ISC"
+}
