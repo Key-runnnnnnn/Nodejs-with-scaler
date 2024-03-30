@@ -5,6 +5,10 @@ const fs = require('fs');
 // // reading file
 // let data= fs.readFileSync('f2.txt','utf-8');
 // console.log(data);
+// readFileSync returns buffer data so using utf-8 to convert it into string
+
+// let data2= fs.readFileSync('f2.txt');
+// console.log('file content->' + data2);// the output is not in buffer format because we concatinate with the '+' operator
 
 // let data1= fs.readFileSync('../Path_module/file1.txt','utf-8');
 // console.log(data1);
@@ -13,11 +17,12 @@ const fs = require('fs');
 // fs.writeFileSync('f3.txt','Hello world');
 // console.log('file written successfully');
 
-// // appending file
+// // // appending file
 // fs.appendFileSync('f3.txt',' Hello world');
 // console.log('file appended successfully');
+// console.log(fs.readFileSync('f3.txt','utf-8'));
 
-// // renaming file
+// // // renaming file
 // fs.renameSync('f3.txt','f4.txt');
 // console.log('file renamed successfully');
 
@@ -51,5 +56,5 @@ const fs = require('fs');
 // console.log(status.toString());  // Hello world
 
 // check if directory exists or not
-let doesExist = fs.existsSync('folder');
-console.log('This path exists?',doesExist);  // true
+// let doesExist = fs.existsSync('folder');
+// console.log('This path exists?',doesExist);  // true

@@ -1,6 +1,6 @@
 {
   "name": "magicmaths",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "The best ever calculator developed during the course of nodejs",
   "main": "Index.js",
   "scripts": {

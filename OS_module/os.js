@@ -1,10 +1,10 @@
 const os=require('os');
 
-console.log(os.arch());  // x64
-console.log(os.hostname());  // DESKTOP-8FVJ9QH
+console.log("Architecture -> " + os.arch());  // x64
+console.log("host name -> " + os.hostname());  // DESKTOP-8FVJ9QH
 console.log(os.platform());  // win32
 console.log(os.type());  // Windows_NT
-console.log(os.uptime());  
+console.log(os.uptime());  // in seconds
 console.log(os.userInfo());  // returns information about the current user
 console.log(os.totalmem());  // returns total memory of the system in bytes
 console.log(os.freemem());  // returns free memory of the system in bytes

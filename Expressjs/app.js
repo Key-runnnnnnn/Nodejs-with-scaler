@@ -1,7 +1,7 @@
 const express = require('express')
 const myMiddleware = require('./middlewares/middleware')
 const morgan = require('morgan')    // third party middleware
-
+const middelware2 = require('./middlewares/middleware2')
 const app = express()
 // get , post , put , delete
 
@@ -15,38 +15,57 @@ app.get('/about', (req, res) => {
     res.send('About Page')
 })
 
-// Contact
+// // Contact
 app.get('/contact', (req, res) => {
     res.send('Contact Page')
 })
 
 
-// middleware
+// // middleware
 app.use(express.json())
 
 // custom middleware
 app.use(myMiddleware)
+app.use(middelware2)
 
 // third party middleware
 app.use(morgan())
 
-app.use((req, res, next) => {
-    console.log('Authenticating...')
-    next()
-})
-
-// Courses
+// // Courses
 let courses = [
     { id: 1, name: 'Python' },
     { id: 2, name: 'Java' },
     { id: 3, name: 'C++' }
 ]
+// // Route Parameters
+app.get('/user/:id', (req, res) => {
+    res.send(req.params.id)
+    console.log(req.params)
+}) 
 
-// Route Parameters
-// app.get('/user/:id', (req, res) => {
-//     res.send(req.params.name)
-//     console.log(req.params)
-// }) 
+app.get('/user/name', (req, res) => {
+    res.send(req.params.name)
+    console.log(req.params)
+}) 
+
+//search all courses
+app.get('/courses', (req, res) => {
+    res.send(courses)
+})
+
+// search course by id
+// app.get('/courses/:id', (req, res) => {
+//     const course = courses.find(c => c.id === parseInt(req.params.id))
+//     if (!course) return res.status(404).send('The course with the given ID was not found')
+//     res.send(course)
+// })
+
+//search course by name
+app.get('/courses/:name', (req, res) => {
+    const course = courses.find(c => c.name === req.params.name)
+    if (!course) return res.status(404).send('The course with the given name was not found')
+    res.send(course)
+})
 
 
 // Post request  -> add course 
@@ -68,35 +87,15 @@ app.put('/courses/:name', (req, res) => {
     res.send(course)
 })
 
-
-// search all courses
-app.get('/courses', (req, res) => {
-    res.send(courses)
-})
-
-// search course by id
-app.get('/courses/:id', (req, res) => {
-    const course = courses.find(c => c.id === parseInt(req.params.id))
-    if (!course) return res.status(404).send('The course with the given ID was not found')
-    res.send(course)
-})
-
-// search course by name
-app.get('/courses/:name', (req, res) => {
-    const course = courses.find(c => c.name === req.params.name)
-    if (!course) return res.status(404).send('The course with the given name was not found')
-    res.send(course)
-})
-
-// Delete request -> delete course
+//Delete request -> delete course
 // app.delete('/courses/:name',(req,res)=>{
-//     let updatedCourses = courses.filter(c => c.name !== req.params.name)
-//     courses = updatedCourses
-//     res.send(courses)
+//    let updatedCourses = courses.filter(c => c.name !== req.params.name)
+//  courses = updatedCourses
+//  res.send(courses)
 // })
 // we can't use two delete request with same route
 
-// delete request -> delete course by id
+// // delete request -> delete course by id
 app.delete('/courses/:id', (req, res) => {
     const course = courses.find(c => c.id === parseInt(req.params.id))
     if (!course) return res.status(404).send('The course with the given ID was not found')
